@@ -1,5 +1,10 @@
 from selenium import webdriver
 import time
+from collections import Counter
+import plotly
+import plotly.plotly as py
+import plotly.graph_objs as go
+plotly.tools.set_credentials_file(username='PuddingFace', api_key='Kcyqp3F6BrMxx3Gj08KL')
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -30,7 +35,25 @@ for links in linkList:
     browser.execute_script("arguments[0].click();", links)
 
 
-nameList = browser.find_elements_by_class_name(' UFICommentActorName')
+nameBrowser = browser.find_elements_by_class_name(' UFICommentActorName')
+nameList = []
+countList = []
+properNameList = []
 
-for names in nameList:
+for names in nameBrowser:
+    nameList.append(names.text)
     print names.text
+nameCount = Counter(nameList)
+print nameCount
+for counters in nameCount:
+    properNameList.append(counters)
+    countList.append(nameCount[counters])
+print properNameList
+print countList
+data = [go.Bar(
+            x=properNameList,
+            y=countList
+    )]
+
+py.plot(data, filename='LLCU 352 Attendance Graph')
+
