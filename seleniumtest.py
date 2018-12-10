@@ -13,7 +13,10 @@ browser.find_element_by_id("email").clear()
 browser.find_element_by_id("email").send_keys("bbjoe345@gmail.com")
 browser.find_element_by_id("pass").clear()
 browser.find_element_by_id("pass").send_keys("Sandvich12")
-browser.find_element_by_id("loginbutton").click();
+browser.find_element_by_id("loginbutton").click()
 time.sleep(10)
 browser.get("https://www.facebook.com/groups/479270829257357/")
+nameList = browser.find_elements_by_class_name(' UFICommentActorName')
 
+for names in nameList:
+    print names.text
