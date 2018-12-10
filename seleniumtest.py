@@ -24,6 +24,12 @@ while(match==False):
     lenOfPage = browser.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
     if lastCount==lenOfPage:
         match=True
+
+linkList = browser.find_elements_by_class_name('UFIPagerLink')
+for links in linkList:
+    browser.execute_script("arguments[0].click();", links)
+
+
 nameList = browser.find_elements_by_class_name(' UFICommentActorName')
 
 for names in nameList:
