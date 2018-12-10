@@ -16,6 +16,14 @@ browser.find_element_by_id("pass").send_keys("Sandvich12")
 browser.find_element_by_id("loginbutton").click()
 time.sleep(10)
 browser.get("https://www.facebook.com/groups/479270829257357/")
+lenOfPage = browser.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
+match=False
+while(match==False):
+    lastCount = lenOfPage
+    time.sleep(3)
+    lenOfPage = browser.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
+    if lastCount==lenOfPage:
+        match=True
 nameList = browser.find_elements_by_class_name(' UFICommentActorName')
 
 for names in nameList:
